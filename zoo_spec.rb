@@ -1,5 +1,6 @@
 # Zoo spec file
 require "./zoo"
+require "rspec"
 
 describe Panda do
 
