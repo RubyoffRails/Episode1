@@ -1,12 +1,9 @@
 #Zoo
 
-class Animal
-
-	def initialize
-		@meals = 0
-	end
+module Animal
 
 	def eat(food)
+		@meals ||= 0
 		if likes?(food)
 			@meals += 1
 			true
@@ -30,7 +27,8 @@ class Animal
 end
 
 
-class Panda < Animal
+class Panda
+	include Animal
 
 	def acceptable_food
 		[:bamboo]
@@ -42,7 +40,8 @@ class Panda < Animal
 
 end
 
-class Lion < Animal
+class Lion
+	include Animal
 
 	def acceptable_food
 		[:wildebeests, :zeebras]
