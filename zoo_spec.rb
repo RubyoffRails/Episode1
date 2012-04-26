@@ -78,15 +78,29 @@ describe Human do
 end
 
 describe Zookeeper do
+  before(:each) do
+    @zookeeper = Zookeeper.new
+  end
+  
 	it "should be able to feed bamboo to the pandas" do
 		panda = Panda.new
 		panda.should_receive(:eat).with(:bamboo)
-		Zookeeper.new.feed(food: :bamboo, to: panda)
+		@zookeeper.feed(food: :bamboo, to: panda)
 	end
 
 	it "should be able to feed zeebras to the lions" do
 		lion = Lion.new
 		lion.should_receive(:eat).with(:zeebras)
-		Zookeeper.new.feed(food: :zeebras, to: lion)
+		@zookeeper.feed(food: :zeebras, to: lion)
+	end
+	
+	it "should be able to feed bacon to the human" do
+		human = Human.new
+		human.should_receive(:eat).with(:bacon)
+		@zookeeper.feed(food: :bacon, to: human)
+	end
+	
+	it "should be able to feed bacon to itself" do
+	  @zookeeper.feed(food: :bacon, to: @zookeeper)
 	end
 end

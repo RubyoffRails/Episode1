@@ -60,11 +60,10 @@ class Human
   end
 end
 
-class Zookeeper
+class Zookeeper < Human
 	def feed(args={})
 		food = args.fetch(:food)
 		mammal = args.fetch(:to)
 		mammal.eat(food)
 	end
-
 end
