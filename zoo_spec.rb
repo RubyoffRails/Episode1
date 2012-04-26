@@ -61,6 +61,22 @@ describe Lion do
 	end
 end
 
+describe Human do
+  before(:each) do
+    @human = Human.new
+  end
+  
+  it "should like bacon" do
+    @human.likes?(:bacon).should eq(true)
+  end
+  it "should like tacos" do
+    @human.likes?(:tacos).should eq(true)
+  end
+  it "should not like bamboo" do
+    @human.likes?(:bamboo).should eq(false)
+  end
+end
+
 describe Zookeeper do
 	it "should be able to feed bamboo to the pandas" do
 		panda = Panda.new

@@ -1,6 +1,6 @@
 #Zoo
 
-module Animal
+module Mammal
 
 	def eat(food)
 		@meals ||= 0
@@ -28,7 +28,7 @@ end
 
 
 class Panda
-	include Animal
+	include Mammal
 
 	def acceptable_food
 		[:bamboo]
@@ -41,7 +41,7 @@ class Panda
 end
 
 class Lion
-	include Animal
+	include Mammal
 
 	def acceptable_food
 		[:wildebeests, :zeebras]
@@ -52,12 +52,19 @@ class Lion
 	end
 end
 
+class Human
+  include Mammal
+  
+  def acceptable_food
+    [:bacon, :tacos]
+  end
+end
+
 class Zookeeper
 	def feed(args={})
 		food = args.fetch(:food)
-		panda = args.fetch(:to)
-		panda.eat(food)
+		mammal = args.fetch(:to)
+		mammal.eat(food)
 	end
 
 end
-
