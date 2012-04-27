@@ -1,63 +1,65 @@
 # Zoo spec file
 require "./zoo"
+require "./food_barge"
 
 describe Panda do
-
+  before(:each) do
+    @panda = Panda.new
+  end
 	it "should like bamboo" do
-		Panda.new.likes?(:bamboo).should eq(true)
+		@panda.likes?(:bamboo).should eq(true)
 	end
 
 	it "should like bamboo as a string" do
-		Panda.new.likes?("bamboo").should eq(true)
+		@panda.likes?("bamboo").should eq(true)
 	end
 
 	it "should not like grasshoppers" do
-		Panda.new.likes?(:grasshoppers).should eq(false)
+		@panda.likes?(:grasshoppers).should eq(false)
 	end
 
 	it "should be able to eat the food" do
-		Panda.new.eat(:bamboo).should be_true
+		@panda.eat(:bamboo).should be_true
 	end
 
 	it "should be full after eating 30 bamboo" do
-		panda = Panda.new
 		31.times do
-			panda.eat(:bamboo)	
+			@panda.eat(:bamboo)	
 		end
-		panda.should be_full
+		@panda.should be_full
 	end
 
 	it "should not be full after 1" do
-		panda = Panda.new
-		panda.eat(:bamboo)	
-		panda.should_not be_full
+		@panda.eat(:bamboo)	
+		@panda.should_not be_full
 	end
 end
 
 describe Lion do
+  before(:each) do
+    @lion = Lion.new
+  end
 	it "should like wildebeests" do
-		Lion.new.likes?(:wildebeests).should eq(true)
+		@lion.likes?(:wildebeests).should eq(true)
 	end
 
 	it "should like zeebras" do
-		Lion.new.likes?(:zeebras).should eq(true)
+		@lion.likes?(:zeebras).should eq(true)
 	end
 
 	it "should not like salad" do
-		Lion.new.likes?(:salad).should eq(false)
+		@lion.likes?(:salad).should eq(false)
 	end
 
 	it "should take 11 meals to be full" do
-		lion = Lion.new
-		lion.eat(:zeebras)
-		lion.should_not be_full
+		@lion.eat(:zeebras)
+		@lion.should_not be_full
 	end
 	it "should take 11 meals to be full" do
-		lion = Lion.new
 		11.times do
-			lion.eat(:zeebras)
+			@lion.eat(:zeebras)
 		end
-		lion.should be_full
+		@lion.should be_full
 	end
 end
 
@@ -101,6 +103,25 @@ describe Zookeeper do
 	end
 	
 	it "should be able to feed bacon to itself" do
-	  @zookeeper.feed(food: :bacon, to: @zookeeper)
+		@zookeeper.should_receive(:eat).with(:bacon)
+		@zookeeper.feed(food: :bacon, to: @zookeeper)
+	end
+end
+
+describe FoodBarge do
+	before(:each) do
+		@barge = FoodBarge.new
+	end
+	it "should return food a panda likes" do
+		panda = Panda.new
+		panda.likes?(@barge.food_for(panda)).should eq(true)
+	end
+
+	it "should feed a panda acceptable food" do
+		panda = Panda.new
+		food = @barge.food_for(panda)
+		panda.should_receive(:eat).with(food)
+		zookeeper = Zookeeper.new
+		zookeeper.feed(food: food, to: panda)
 	end
 end
