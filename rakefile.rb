@@ -1,6 +1,6 @@
 require "rubygems"
 require "bundler/setup"
-
+require 'rake/testtask'
 require 'rspec/core/rake_task'
 
 desc 'Default: run specs.'
@@ -12,3 +12,8 @@ RSpec::Core::RakeTask.new do |t|
   # Put spec opts in a file named .rspec in root
 end
 
+
+desc 'Run MiniTest tests'
+Rake::TestTask.new do |t|
+  t.pattern = '**/test_*.rb'
+end
