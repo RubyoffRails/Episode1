@@ -1,6 +1,6 @@
 #Zoo
 
-module Mammal
+module Animal
 
 	def eat(food)
 		@meals ||= 0
@@ -28,7 +28,7 @@ end
 
 
 class Panda
-	include Mammal
+	include Animal
 
 	def acceptable_food
 		[:bamboo]
@@ -41,7 +41,7 @@ class Panda
 end
 
 class Lion
-	include Mammal
+	include Animal
 
 	def acceptable_food
 		[:wildebeests, :zeebras]
@@ -53,7 +53,7 @@ class Lion
 end
 
 class Human
-	include Mammal
+	include Animal
 	
 	def acceptable_food
 		[:bacon, :tacos]
