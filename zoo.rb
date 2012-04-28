@@ -23,6 +23,12 @@ module Animal
 	def full?
 		false
 	end
+
+  def feed(foods)
+    foods.each do |food|
+      eat(food) 
+    end 
+  end
 end
 
 class Food
@@ -37,16 +43,7 @@ end
 class FoodBarge
 
   def food_for(animal)
-    case animal
-    when Panda
-      animal.acceptable_food
-    when Lion
-      animal.acceptable_food
-    when Human
-      animal.acceptable_food
-    else
-      false
-    end
+    animal.acceptable_food
   end
 end
 
@@ -62,11 +59,6 @@ class Panda
 		@meals > 30
 	end
 
-  def feed(foods)
-    foods.each do |food|
-      eat(food) 
-    end 
-  end
 end
 
 class Lion
@@ -81,12 +73,6 @@ class Lion
 	def full?
 		@meals > 10
 	end
-
-  def feed(foods)
-    foods.each do |food|
-      eat(food)
-    end 
-  end
 end
 
 class Zookeeper
