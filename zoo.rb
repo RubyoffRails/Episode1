@@ -101,7 +101,6 @@ class Human
   include Animal
   
   def acceptable_food
-    [:bacon, :tacos]
     bacon = Food.new("bacon")
     tacos = Food.new("tacos")
     [bacon.name, tacos.name]
