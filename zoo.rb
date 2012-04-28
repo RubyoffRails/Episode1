@@ -1,4 +1,4 @@
- #Zoo
+#Zoo
 
 module Animal
 
@@ -13,7 +13,7 @@ module Animal
 	end
 
 	def likes?(food)
-		acceptable_food.include?(food.to_sym)
+		acceptable_food.include?(food.to_s)
 	end
 
 	def acceptable_food
@@ -26,38 +26,52 @@ module Animal
 
 end
 
-
-class Panda
-	include Animal
-
-	def acceptable_food
-		[:bamboo]
-	end
-
-	def full?
-		@meals > 30
-	end
-
-end
-
-class Lion
-	include Animal
-
-	def acceptable_food
-		[:wildebeests, :zeebras]
-	end
-
-	def full?
-		@meals > 10
-	end
+class Food
+  attr_accessor :name
+  
+  def initialize(name)
+    @name = name
+  end
+  
+  def to_s
+    "#{@name}"
+  end
+  
 end
 
 class Human
   include Animal
   
   def acceptable_food
-    [:bacon, :tacos]
+    ["bacon", "tacos"]
   end
+  
+end
+
+class Panda
+	include Animal
+
+	def acceptable_food
+		["bamboo"]
+	end
+
+	def full?
+		@meals > 30
+	end
+	
+end
+
+class Lion
+	include Animal
+
+	def acceptable_food
+		["wildebeests", "zeebras"]
+	end
+
+	def full?
+		@meals > 10
+	end
+	
 end
 
 class Zookeeper
@@ -66,6 +80,6 @@ class Zookeeper
 		panda = args.fetch(:to)
 		panda.eat(food)
 	end
-
+	
 end
 
