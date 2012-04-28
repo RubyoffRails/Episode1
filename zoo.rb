@@ -1,4 +1,4 @@
-#Zoo
+ #Zoo
 
 module Animal
 
@@ -50,6 +50,14 @@ class Lion
 	def full?
 		@meals > 10
 	end
+end
+
+class Human
+  include Animal
+  
+  def acceptable_food
+    [:bacon, :tacos]
+  end
 end
 
 class Zookeeper
