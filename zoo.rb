@@ -13,7 +13,7 @@ module Animal
 	end
 
 	def likes?(food)
-		acceptable_food.include?(food)
+		acceptable_food.include?(food.name)
 	end
 
 	def acceptable_food
@@ -42,6 +42,8 @@ end
 
 class FoodBarge
 
+  @foodbarge = FoodBarge.new
+
   def food_for(animal)
     animal.acceptable_food
   end
@@ -51,8 +53,7 @@ class Panda
 	include Animal
 
 	def acceptable_food
-		bamboo = Food.new("bamboo")
-    [bamboo.name]
+    [Food.new("bamboo").name]
 	end
 
 	def full?
@@ -65,9 +66,7 @@ class Lion
 	include Animal
 
 	def acceptable_food
-    wildebeests = Food.new("wildebeests")
-    zebras = Food.new("zebras")
-    [wildebeests.name, zebras.name]
+    [Food.new("wildebeests").name, Food.new("zebras").name]
 	end
 
 	def full?
@@ -87,9 +86,7 @@ class Human
   include Animal
   
   def acceptable_food
-    bacon = Food.new("bacon")
-    tacos = Food.new("tacos")
-    [bacon.name, tacos.name]
+    [Food.new("bacon").name, Food.new("tacos").name]
   end
 end
 
