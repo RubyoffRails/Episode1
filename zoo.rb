@@ -63,8 +63,8 @@ end
 class Zookeeper
 	def feed(args={})
 		food = args.fetch(:food)
-		panda = args.fetch(:to)
-		panda.eat(food)
+		animal = args.fetch(:to)
+		animal.eat(food)
 	end
 
 end
