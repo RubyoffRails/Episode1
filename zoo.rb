@@ -52,6 +52,14 @@ class Lion
 	end
 end
 
+class Human
+	include Animal
+
+	def acceptable_food
+		[:bacon, :tacos]
+	end
+end
+
 class Zookeeper
 	def feed(args={})
 		food = args.fetch(:food)
