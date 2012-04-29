@@ -31,7 +31,7 @@ class Panda
 	include Animal
 
 	def acceptable_food
-		[:bamboo]
+		[Food.new(:bamboo).name]
 	end
 
 	def full?
@@ -69,3 +69,10 @@ class Zookeeper
 
 end
 
+class Food
+	attr_reader :name
+
+	def initialize(name)
+		@name = name
+	end
+end
