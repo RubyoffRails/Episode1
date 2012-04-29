@@ -61,3 +61,8 @@ class Zookeeper
 
 end
 
+class Human
+  def likes?(food)
+    [:bacon,:tacos].include?(food)
+  end
+end
