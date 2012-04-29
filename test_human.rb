@@ -10,14 +10,14 @@ class PreTest < MiniTest::Unit::TestCase
   end
 
   def test_require
-    assert_equal(Panda.new.class, Panda)
-    assert_equal(Lion.new.class, Lion)
+    assert_equal(Panda, Panda.new.class)
+    assert_equal(Lion, Lion.new.class)
   end
 end
 
 class HumanClassTest < MiniTest::Unit::TestCase
   def test_class
-    assert_equal(Human.new.class, Human)
+    assert_equal(Human, Human.new.class)
   end
 end
 
@@ -52,5 +52,15 @@ class HumanFullTest < MiniTest::Unit::TestCase
     human = Human.new
     5.times { human.eat(:bacon) }
     assert human.full?
+  end
+
+  # I don't want the FoodBarge class to reach into the animal to get
+  # food. The barge will either have food for the animal or not. It may
+  # not have food for the animal if (1) it's out of food or (2) it has
+  # no food the animal likes. In that case, it will return nil to the
+  # eat method. So, let's make sure that doesn't blow up.
+  def test_eat_with_nil
+    human = Human.new
+    refute human.eat(nil)
   end
 end
