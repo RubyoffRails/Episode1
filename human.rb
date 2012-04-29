@@ -1,4 +1,5 @@
 require_relative 'zoo'
+require_relative 'food'
 
 class Human
   include Animal
@@ -14,13 +15,5 @@ class Human
   def full?
     # Let's be optimistic about our Human's eating habits
     @meals > 4
-  end
-end
-
-class Food
-  attr_reader :type
-
-  def initialize(type)
-    @type = type
   end
 end
