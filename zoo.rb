@@ -13,7 +13,13 @@ module Animal
 	end
 
 	def likes?(food)
-		acceptable_food.include?(food.to_sym)
+      # FoodBarge may return nil, so we need to avoid an exception
+      # here.
+      if food.nil?
+        false
+      else
+        acceptable_food.include?(food.to_sym)
+      end
 	end
 
 	def acceptable_food
