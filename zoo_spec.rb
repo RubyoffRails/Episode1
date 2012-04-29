@@ -53,6 +53,7 @@ describe Lion do
 		lion.eat(:zeebras)
 		lion.should_not be_full
 	end
+
 	it "should take 11 meals to be full" do
 		lion = Lion.new
 		11.times do
@@ -73,5 +74,23 @@ describe Zookeeper do
 		lion = Lion.new
 		lion.should_receive(:eat).with(:zeebras)
 		Zookeeper.new.feed(food: :zeebras, to: lion)
+	end
+end
+
+describe Human do
+	it "should like bacon" do
+		human = Human.new
+		human.eat(:bacon)
+		human.should_not be_full
+	end
+
+	it "should like tacos" do
+		human = Human.new
+		human.eat(:tacos)
+		human.should_not be_full
+	end
+
+	it "should not like bamboo" do
+		Human.new.likes?(:bamboo).should eq(false)
 	end
 end
