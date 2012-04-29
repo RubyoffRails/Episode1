@@ -44,7 +44,7 @@ class Lion
 	include Animal
 
 	def acceptable_food
-		[:wildebeests, :zeebras]
+		[Food.new(:wildebeests).name, Food.new(:zeebras).name]
 	end
 
 	def full?
@@ -56,7 +56,7 @@ class Human
 	include Animal
 
 	def acceptable_food
-		[:bacon, :tacos]
+		[Food.new(:bacon).name, Food.new(:tacos).name]
 	end
 end
 
