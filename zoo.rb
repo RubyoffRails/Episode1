@@ -52,7 +52,15 @@ class Lion
 	end
 end
 
-class Zookeeper
+class Human
+	include Animal
+	
+	def acceptable_food
+		[:bacon, :tacos]
+	end
+end
+
+class Zookeeper < Human
 	def feed(args={})
 		food = args.fetch(:food)
 		panda = args.fetch(:to)
