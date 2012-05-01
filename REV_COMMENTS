@@ -1,0 +1,68 @@
+I am learning how to use classes in Ruby and now will get a chance to learn some of the "why" behind class design with these questions. This is exactly why I signed up. Thank you.
+
+Questions: 
+
+1. Class Org Philosophy 
+
+In the Animal module, feed and eat are very similar. I did it this way because the instructions call for me to feed the panda via "panda.feed(food)". 
+
+I think if I was going free form I would do something more like:
+
+zookeeper = Zookeeper.new
+zookeeper.feed(panda)
+
+and resolve it in the Zookeeper#feed method
+
+or something like:
+
+food = @foodbarge.food_for(panda)
+zookeeper = Zookeeper.new
+zookeeper.feed(panda, food)
+
+I'm not sure which one would be the best practice, or if there's a reason why panda.feed(food) makes the most sense. 
+
+2. Lions can't just eat one. 
+
+The way I have it setup, a lion always has to eat a Wildebeest and a Zeebra. We can't feed him 4 Wilde's and 2 Zeebra's. Maybe this is just outside of scope for the exercise, or maybe I've done it wrong...
+
+3. Defining setter/getter at the module level. 
+
+This worked: 
+
+Module Animal
+  attr_reader :meals
+
+Is it a good idea Ruby wise? The alternative was to make each Lion, Panda, etc class have this definition. 
+
+4. Equality Override Method ain't DRY
+
+I suspect this could be refactored:
+
+class Taco
+  def ==(other)
+    other.is_a? Taco
+  end
+end
+
+class Bacon
+  def ==(other)
+    other.is_a? Bacon
+  end
+end
+
+class Bamboo
+  def ==(other)
+    other.is_a? Bamboo
+  end
+end
+
+Initially, I was going to:
+
+1. Create a Food module.
+
+2. Paste the method "up a level" from Bamboo to Food module.
+
+3. Include Food in each Taco, Bacon, Bamboo type class. 
+
+This didn't pan out because Bamboo is hard coded in the Bamboo class. I considered replacing "Bamboo" with other.class but then I'm defining other, which has a class and then asking if it matches itself. At that point, I can shorten the method by just saying 1=1...how do I "get at it"?
+
