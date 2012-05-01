@@ -30,7 +30,7 @@ class Panda
 	include Animal
 
 	def acceptable_food
-		[:bamboo]
+		[Food.new(:bamboo).type]
 	end
 
 	def full?
@@ -43,7 +43,7 @@ class Lion
 	include Animal
 
 	def acceptable_food
-		[:wildebeests, :zeebras]
+		[Food.new(:wildebeests).type, Food.new(:zeebras).type]
 	end
 
 	def full?
@@ -55,7 +55,7 @@ class Human
   include Animal
   
   def acceptable_food
-		[:bacon, :tacos]
+		[Food.new(:bacon).type, Food.new(:tacos).type]
 	end
 	def full?
 		@meals > 2
@@ -71,4 +71,17 @@ class Zookeeper
 
 end
 
+class Food
+  attr_reader :type
+  
+  def initialize(type)
+    @type = type
+  end
+  
+end
 
+class FoodBarge
+  def food_for(animal)
+    animal.acceptable_food
+  end
+end
