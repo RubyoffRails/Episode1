@@ -61,3 +61,11 @@ class Zookeeper
 
 end
 
+class Human
+  include Animal
+  
+  def acceptable_food
+    [:bacon, :tacos]
+  end
+end
+
