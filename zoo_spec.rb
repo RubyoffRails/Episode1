@@ -60,7 +60,6 @@ describe Lion do
 end
 
 describe Human do
-  
   it "should like bacon" do
     Human.new.likes?(Bacon.new).should eq(true)
   end
@@ -95,6 +94,12 @@ describe Bamboo do
   end
 end
 
+describe Salad do
+  it "should be able to compare Salad class equality" do
+    a = Salad.new
+    (Salad.new == a).should eq(true)
+  end
+end
 
 describe Zookeeper do
 	it "should be able to feed bamboo to the pandas" do
@@ -110,4 +115,39 @@ describe Zookeeper do
 		lion.should_receive(:eat).with(zeebras)
 		Zookeeper.new.feed(:food => zeebras, :to => lion)
 	end
+end
+
+describe FoodBarge do
+  it "should return wildebeest and zeebra true when animal is lion" do
+    foodbarge = FoodBarge.new
+    lion = Lion.new
+    foodbarge.food_for(lion).should eq([Wildebeest.new, Zeebra.new])
+  end
+  
+  it "should return bamboo true when animal is panda" do
+    foodbarge = FoodBarge.new
+    panda = Panda.new
+    foodbarge.food_for(panda).should eq([Bamboo.new])
+  end
+  
+  it "should make the panda full after feeding 31 bamboo" do
+    @foodbarge = FoodBarge.new
+    panda = Panda.new
+    food = @foodbarge.food_for(panda)
+    31.times do 
+      panda.feed(food)
+    end
+    panda.full?.should eq(true)
+  end
+  
+  it "should not make the lion full after eating 4 Wildebeest and 4 Zeebra" do
+    @foodbarge = FoodBarge.new
+    lion = Lion.new
+    food = @foodbarge.food_for(lion)
+    4.times do 
+      lion.feed(food)
+    end
+    lion.full?.should eq(false)
+  end
+  
 end

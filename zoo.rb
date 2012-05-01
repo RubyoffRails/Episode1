@@ -1,7 +1,8 @@
 #Zoo
 
 module Animal
-
+  attr_reader :meals
+  
 	def eat(food)
 		@meals ||= 0
 		if likes?(food)
@@ -11,6 +12,18 @@ module Animal
 			false
 		end
 	end
+
+  def feed(food)
+    @meals ||= 0
+    food.each do |f|
+      if likes?(f)
+        @meals += 1
+        true
+      else
+        false
+      end
+    end
+  end
 
 	def likes?(food_class)
 		like = false
@@ -74,20 +87,6 @@ class Salad
   end  
 end
 
-# 
-# class Food
-#   attr_accessor :name
-#   
-#   def initialize(name)
-#     @name = name
-#   end
-#   
-#   def to_s
-#     "#{@name}"
-#   end
-#   
-# end
-
 class Human
   include Animal
   
@@ -103,7 +102,7 @@ class Panda
 	def acceptable_food
 		[Bamboo.new]
 	end
-
+  
 	def full?
 		@meals > 30
 	end
@@ -129,6 +128,12 @@ class Zookeeper
 		panda = args.fetch(:to)
 		panda.eat(food)
 	end
-	
 end
+  
+class FoodBarge
+  
+  def food_for(animal)
+    animal.acceptable_food
+  end
 
+end	
