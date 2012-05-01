@@ -101,13 +101,13 @@ describe Zookeeper do
 		panda = Panda.new
 		bamboo = Bamboo.new
 		panda.should_receive(:eat).with(bamboo)
-		Zookeeper.new.feed(food: bamboo, to: panda)
+		Zookeeper.new.feed(:food => bamboo, :to => panda)
 	end
 
 	it "should be able to feed zeebras to the lions" do
 		lion = Lion.new
 		zeebras = Zeebra.new
 		lion.should_receive(:eat).with(zeebras)
-		Zookeeper.new.feed(food: zeebras, to: lion)
+		Zookeeper.new.feed(:food => zeebras, :to => lion)
 	end
 end
