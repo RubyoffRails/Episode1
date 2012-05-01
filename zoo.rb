@@ -12,8 +12,14 @@ module Animal
 		end
 	end
 
-	def likes?(food)
-		acceptable_food.include?(food.to_s)
+	def likes?(food_class)
+		like = false
+		acceptable_food.each do |food|
+      if food_class == food
+        like = true
+      end
+		end
+		return like
 	end
 
 	def acceptable_food
@@ -26,24 +32,67 @@ module Animal
 
 end
 
-class Food
-  attr_accessor :name
-  
-  def initialize(name)
-    @name = name
+class Taco
+  def ==(other)
+    other.is_a? Taco
   end
-  
-  def to_s
-    "#{@name}"
-  end
-  
 end
+
+class Bacon
+  def ==(other)
+    other.is_a? Bacon
+  end
+end
+
+class Bamboo
+  def ==(other)
+    other.is_a? Bamboo
+  end
+end
+
+class Grasshopper
+  def ==(other)
+    other.is_a? Grasshopper
+  end  
+end
+
+class Wildebeest
+  def ==(other)
+    other.is_a? Wildebeest
+  end  
+end
+
+class Zeebra
+  def ==(other)
+    other.is_a? Zeebra
+  end  
+end
+
+class Salad
+  def ==(other)
+    other.is_a? Salad
+  end  
+end
+
+# 
+# class Food
+#   attr_accessor :name
+#   
+#   def initialize(name)
+#     @name = name
+#   end
+#   
+#   def to_s
+#     "#{@name}"
+#   end
+#   
+# end
 
 class Human
   include Animal
   
   def acceptable_food
-    ["bacon", "tacos"]
+    [Bacon.new, Taco.new]
   end
   
 end
@@ -52,7 +101,7 @@ class Panda
 	include Animal
 
 	def acceptable_food
-		["bamboo"]
+		[Bamboo.new]
 	end
 
 	def full?
@@ -65,7 +114,7 @@ class Lion
 	include Animal
 
 	def acceptable_food
-		["wildebeests", "zeebras"]
+		[Wildebeest.new, Zeebra.new]
 	end
 
 	def full?
