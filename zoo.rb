@@ -75,9 +75,9 @@ class Wildebeest
   end  
 end
 
-class Zeebra
+class Zebra
   def ==(other)
-    other.is_a? Zeebra
+    other.is_a? Zebra
   end  
 end
 
@@ -113,7 +113,7 @@ class Lion
 	include Animal
 
 	def acceptable_food
-		[Wildebeest.new, Zeebra.new]
+		[Wildebeest.new, Zebra.new]
 	end
 
 	def full?
@@ -125,8 +125,8 @@ end
 class Zookeeper
 	def feed(args={})
 		food = args.fetch(:food)
-		panda = args.fetch(:to)
-		panda.eat(food)
+    animal = args.fetch(:to)
+		animal.eat(food)
 	end
 end
   

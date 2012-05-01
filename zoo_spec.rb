@@ -36,24 +36,24 @@ describe Lion do
 		Lion.new.likes?(Wildebeest.new).should eq(true)
 	end
 
-	it "should like zeebras" do
-		Lion.new.likes?(Zeebra.new).should eq(true)
+	it "should like zebras" do
+		Lion.new.likes?(Zebra.new).should eq(true)
 	end
 
 	it "should not like salad" do
 		Lion.new.likes?(Salad.new).should eq(false)
 	end
 
-	it "should not be full after eating only 1 Zeebra" do
+	it "should not be full after eating only 1 zebra" do
 		lion = Lion.new
-		lion.eat(Zeebra.new)
+		lion.eat(Zebra.new)
 		lion.should_not be_full
 	end
 	
 	it "should take 11 meals to be full" do
 		lion = Lion.new
 		11.times do
-			lion.eat(Zeebra.new)
+			lion.eat(Zebra.new)
 		end
 		lion.should be_full
 	end
@@ -109,19 +109,19 @@ describe Zookeeper do
 		Zookeeper.new.feed(:food => bamboo, :to => panda)
 	end
 
-	it "should be able to feed zeebras to the lions" do
+	it "should be able to feed zebras to the lions" do
 		lion = Lion.new
-		zeebras = Zeebra.new
-		lion.should_receive(:eat).with(zeebras)
-		Zookeeper.new.feed(:food => zeebras, :to => lion)
+		zebra = Zebra.new
+		lion.should_receive(:eat).with(zebra)
+		Zookeeper.new.feed(:food => zebra, :to => lion)
 	end
 end
 
 describe FoodBarge do
-  it "should return wildebeest and zeebra true when animal is lion" do
+  it "should return wildebeest and zebra true when animal is lion" do
     foodbarge = FoodBarge.new
     lion = Lion.new
-    foodbarge.food_for(lion).should eq([Wildebeest.new, Zeebra.new])
+    foodbarge.food_for(lion).should eq([Wildebeest.new, Zebra.new])
   end
   
   it "should return bamboo true when animal is panda" do
@@ -140,7 +140,7 @@ describe FoodBarge do
     panda.full?.should eq(true)
   end
   
-  it "should not make the lion full after eating 4 Wildebeest and 4 Zeebra" do
+  it "should not make the lion full after eating 4 Wildebeest and 4 zebra" do
     @foodbarge = FoodBarge.new
     lion = Lion.new
     food = @foodbarge.food_for(lion)
