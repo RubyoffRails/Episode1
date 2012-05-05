@@ -26,6 +26,18 @@ module Animal
 
 end
 
+class Human
+	include Animal
+
+	def acceptable_food
+		[:bacon, :tacos]
+	end
+
+	def full?
+		@meals > 8
+	end
+
+end
 
 class Panda
 	include Animal
