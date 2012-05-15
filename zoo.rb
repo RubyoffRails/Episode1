@@ -52,6 +52,14 @@ class Lion
 	end
 end
 
+class Human
+	include Animal
+
+	def acceptable_food
+		[Tacos.new, Bacon.new]
+	end
+
+end
 
 class Food
 
@@ -62,6 +70,7 @@ class Food
 end
 
 class Tacos < Food; end
+class Bacon < Food; end
 class Wildebeests < Food; end
 class Zeebras < Food; end
 class Bamboo < Food; end
@@ -75,3 +84,12 @@ class Zookeeper
 
 end
 
+class Foodbarge
+	def food_for(animal)
+		if animal == :panda 
+			return Panda.new.acceptable_food()
+		else 
+			false
+		end
+	end
+end
