@@ -52,6 +52,13 @@ class Lion
 	end
 end
 
+class Human
+  include Animal
+
+  def acceptable_food
+    [Bacon.new, Tacos.new]
+  end
+end
 
 class Food
 
@@ -62,6 +69,7 @@ class Food
 end
 
 class Tacos < Food; end
+class Bacon < Food; end
 class Wildebeests < Food; end
 class Zeebras < Food; end
 class Bamboo < Food; end
@@ -74,4 +82,6 @@ class Zookeeper
 	end
 
 end
+
+
 
