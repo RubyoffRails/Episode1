@@ -13,7 +13,7 @@ module Animal
 	end
 
 	def likes?(food)
-		acceptable_food.include?(food.to_sym)
+		acceptable_food.include?(food)
 	end
 
 	def acceptable_food
@@ -31,7 +31,7 @@ class Panda
 	include Animal
 
 	def acceptable_food
-		[Food.new(:bamboo).name]
+		[Bamboo.new]
 	end
 
 	def full?
@@ -44,7 +44,7 @@ class Lion
 	include Animal
 
 	def acceptable_food
-		[Food.new(:wildebeests).name, Food.new(:zeebras).name]
+		[Wildebeests.new, Zeebras.new]
 	end
 
 	def full?
@@ -52,13 +52,21 @@ class Lion
 	end
 end
 
-class Human
-	include Animal
 
-	def acceptable_food
-		[Food.new(:bacon).name, Food.new(:tacos).name]
+
+class Food
+
+	def ==(other)
+		other.is_a? self.class
 	end
+
 end
+
+class Tacos < Food; end
+class Wildebeests < Food; end
+class Zeebras < Food; end
+class Bamboo < Food; end
+
 
 class Zookeeper
 	def feed(args={})
