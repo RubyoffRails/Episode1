@@ -53,6 +53,7 @@ class Lion
 end
 
 
+
 class Food
 
 	def ==(other)
@@ -66,12 +67,20 @@ class Wildebeests < Food; end
 class Zeebras < Food; end
 class Bamboo < Food; end
 
+
 class Zookeeper
 	def feed(args={})
 		food = args.fetch(:food)
-		panda = args.fetch(:to)
-		panda.eat(food)
+		animal = args.fetch(:to)
+		animal.eat(food)
 	end
 
 end
 
+class Food
+	attr_reader :name
+
+	def initialize(name)
+		@name = name
+	end
+end

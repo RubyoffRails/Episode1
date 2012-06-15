@@ -1,5 +1,5 @@
 # Zoo spec file
-require "./zoo"
+require_relative "../zoo"
 require "rspec"
 
 class Grasshoppers < Food; end
@@ -28,14 +28,14 @@ describe Panda do
 	it "should be full after eating 30 bamboo" do
 		panda = Panda.new
 		31.times do
-			panda.eat(Bamboo.new)	
+			panda.eat(Bamboo.new)
 		end
 		panda.should be_full
 	end
 
 	it "should not be full after 1" do
 		panda = Panda.new
-		panda.eat(Bamboo.new)	
+		panda.eat(Bamboo.new)
 		panda.should_not be_full
 	end
 end
@@ -80,3 +80,18 @@ describe Zookeeper do
 		Zookeeper.new.feed(food: :zeebras, to: lion)
 	end
 end
+
+describe Human do
+	it "should like bacon" do
+		Human.new.likes?(:bacon).should be_true
+	end
+
+	it "should like tacos" do
+		Human.new.likes?(:tacos).should be_true
+	end
+
+	it "should like bamboo" do
+		Human.new.likes?(:bamboo).should_not be_true
+	end
+end
+
