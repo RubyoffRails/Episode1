@@ -1,7 +1,6 @@
 #Zoo
 
 module Animal
-
 	def eat(food)
 		@meals ||= 0
 		if likes?(food)
@@ -25,7 +24,6 @@ module Animal
 	end
 
 end
-
 
 class Panda
 	include Animal
@@ -75,3 +73,15 @@ class Zookeeper
 
 end
 
+class Human
+  include Animal
+  
+  def acceptable_food
+    [:bacon,:tacos]
+  end
+  
+  def full?
+		@meals > 20
+	end
+  
+end
