@@ -68,17 +68,28 @@ describe Lion do
 end
 
 describe Zookeeper do
+  let(:panda) {Panda.new()}
+  let(:lion) {Lion.new()}
+  
 	it "should be able to feed bamboo to the pandas" do
-		panda = Panda.new
 		panda.should_receive(:eat).with(:bamboo)
 		Zookeeper.new.feed(food: :bamboo, to: panda)
 	end
 
 	it "should be able to feed zeebras to the lions" do
-		lion = Lion.new
 		lion.should_receive(:eat).with(:zeebras)
 		Zookeeper.new.feed(food: :zeebras, to: lion)
 	end
+	
+	it "should be able to feed panda using foodbarge" do
+	  panda.should_receive(:eat).with(Bamboo.new())
+	  Zookeeper.new.feed(to: panda)
+  end
+  
+  it "should be able to feed lion using foodbarge" do
+    lion.should_receive(:eat)
+	  Zookeeper.new.feed(to: lion)
+  end
 end
 
 describe Human do

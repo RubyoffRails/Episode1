@@ -92,9 +92,9 @@ class Bacon < Food; end
 
 class Zookeeper
 	def feed(args={})
-		food = args.fetch(:food)
-		panda = args.fetch(:to)
-		panda.eat(food)
+	  animal = args.fetch(:to)
+		food = args.has_key?(:food) ? args.fetch(:food) : FoodBarge.new().food_for(animal)
+		animal.eat(food)
 	end
 
 end
