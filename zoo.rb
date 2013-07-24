@@ -64,6 +64,17 @@ class Human
   end
 end
 
+class FoodBarge
+  
+  def food_for(animal)
+    if animal.class.include?(Animal)
+      animal.acceptable_food.sample
+    else
+      []
+    end
+  end
+end
+
 
 class Food
 

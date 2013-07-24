@@ -125,3 +125,31 @@ describe Human do
     human.should_not be_full
   end
 end
+
+describe FoodBarge do
+  let(:food_barge) { FoodBarge.new() }
+  
+  it "should not create food for a non-animal class" do
+    tacos = Tacos.new
+    food = food_barge.food_for(tacos)
+    food.should eq([])
+  end
+  
+  it "should create food for pandas" do
+    panda = Panda.new
+    food = food_barge.food_for(panda)
+    panda.likes?(food).should eq(true)
+  end
+  
+  it "should create food for humans" do
+    human = Human.new
+    food = food_barge.food_for(human)
+    human.likes?(food).should eq(true)
+  end
+  
+  it "should create zeebras for lions" do
+    lion = Lion.new
+    food = food_barge.food_for(lion)
+    lion.likes?(food).should eq(true)
+  end
+end
