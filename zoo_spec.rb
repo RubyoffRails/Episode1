@@ -80,3 +80,48 @@ describe Zookeeper do
 		Zookeeper.new.feed(food: :zeebras, to: lion)
 	end
 end
+
+describe Human do
+  let(:human) { Human.new() }
+  let(:tacos) { Tacos.new() }
+  let(:bacon) { Bacon.new() }
+  let(:bamboo) { Bamboo.new() }
+  
+  it "should like Tacos" do
+    human.likes?(tacos).should eq(true)
+  end
+  
+  it "should like Bacon" do
+    human.likes?(bacon).should eq(true)
+  end
+  
+  it "should not like Bamboo" do
+    human.likes?(bamboo).should eq(false)
+  end
+  
+  it "should eat Tacos" do
+    human.eat(tacos).should eq(true)
+  end
+  
+  it "should eat Bacon" do
+    human.eat(bacon).should eq(true)
+  end
+  
+  it "should not eat Bamboo" do
+    human.eat(bamboo).should eq(false)
+  end
+  
+  it "should be full after 4 meals" do
+    human = Human.new()
+    4.times do
+      human.eat(tacos)
+    end
+    human.should be_full
+  end
+  
+  it "should not be full after one meal" do
+    human = Human.new()
+    human.eat(tacos)
+    human.should_not be_full
+  end
+end

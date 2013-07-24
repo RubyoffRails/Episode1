@@ -52,6 +52,18 @@ class Lion
 	end
 end
 
+class Human
+  include Animal
+  
+  def acceptable_food
+    [Tacos.new, Bacon.new]
+  end
+  
+  def full?
+    @meals > 3
+  end
+end
+
 
 class Food
 
@@ -65,6 +77,7 @@ class Tacos < Food; end
 class Wildebeests < Food; end
 class Zeebras < Food; end
 class Bamboo < Food; end
+class Bacon < Food; end
 
 class Zookeeper
 	def feed(args={})
