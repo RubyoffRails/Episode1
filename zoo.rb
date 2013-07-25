@@ -52,6 +52,29 @@ class Lion
 	end
 end
 
+class Human
+  include Animal
+  
+  def acceptable_food
+    [Tacos.new, Bacon.new]
+  end
+  
+  def full?
+    @meals > 3
+  end
+end
+
+class FoodBarge
+  
+  def food_for(animal)
+    if animal.class.include?(Animal)
+      animal.acceptable_food.sample
+    else
+      []
+    end
+  end
+end
+
 
 class Food
 
@@ -65,12 +88,15 @@ class Tacos < Food; end
 class Wildebeests < Food; end
 class Zeebras < Food; end
 class Bamboo < Food; end
+class Bacon < Food; end
+class Grasshoppers < Food; end
+class Salad < Food; end
 
 class Zookeeper
 	def feed(args={})
-		food = args.fetch(:food)
-		panda = args.fetch(:to)
-		panda.eat(food)
+	  animal = args.fetch(:to)
+		food = args.has_key?(:food) ? args.fetch(:food) : FoodBarge.new().food_for(animal)
+		animal.eat(food)
 	end
 
 end

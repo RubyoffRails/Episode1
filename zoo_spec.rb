@@ -2,9 +2,6 @@
 require "./zoo"
 require "rspec"
 
-class Grasshoppers < Food; end
-class Salad < Food; end
-
 describe Tacos do
 	it "should know all tacos are equal" do
 		(Tacos.new == Tacos.new).should be_true
@@ -68,15 +65,99 @@ describe Lion do
 end
 
 describe Zookeeper do
+  let(:panda) {Panda.new()}
+  let(:lion) {Lion.new()}
+  
 	it "should be able to feed bamboo to the pandas" do
-		panda = Panda.new
 		panda.should_receive(:eat).with(:bamboo)
 		Zookeeper.new.feed(food: :bamboo, to: panda)
 	end
 
 	it "should be able to feed zeebras to the lions" do
-		lion = Lion.new
 		lion.should_receive(:eat).with(:zeebras)
 		Zookeeper.new.feed(food: :zeebras, to: lion)
 	end
+	
+	it "should be able to feed panda using foodbarge" do
+	  panda.should_receive(:eat).with(Bamboo.new())
+	  Zookeeper.new.feed(to: panda)
+  end
+  
+  it "should be able to feed lion using foodbarge" do
+    lion.should_receive(:eat)
+	  Zookeeper.new.feed(to: lion)
+  end
+end
+
+describe Human do
+  let(:human) { Human.new() }
+  let(:tacos) { Tacos.new() }
+  let(:bacon) { Bacon.new() }
+  let(:bamboo) { Bamboo.new() }
+  
+  it "should like Tacos" do
+    human.likes?(tacos).should eq(true)
+  end
+  
+  it "should like Bacon" do
+    human.likes?(bacon).should eq(true)
+  end
+  
+  it "should not like Bamboo" do
+    human.likes?(bamboo).should eq(false)
+  end
+  
+  it "should eat Tacos" do
+    human.eat(tacos).should eq(true)
+  end
+  
+  it "should eat Bacon" do
+    human.eat(bacon).should eq(true)
+  end
+  
+  it "should not eat Bamboo" do
+    human.eat(bamboo).should eq(false)
+  end
+  
+  it "should be full after 4 meals" do
+    human = Human.new()
+    4.times do
+      human.eat(tacos)
+    end
+    human.should be_full
+  end
+  
+  it "should not be full after one meal" do
+    human = Human.new()
+    human.eat(tacos)
+    human.should_not be_full
+  end
+end
+
+describe FoodBarge do
+  let(:food_barge) { FoodBarge.new() }
+  
+  it "should not create food for a non-animal class" do
+    tacos = Tacos.new
+    food = food_barge.food_for(tacos)
+    food.should eq([])
+  end
+  
+  it "should create food for pandas" do
+    panda = Panda.new
+    food = food_barge.food_for(panda)
+    panda.likes?(food).should eq(true)
+  end
+  
+  it "should create food for humans" do
+    human = Human.new
+    food = food_barge.food_for(human)
+    human.likes?(food).should eq(true)
+  end
+  
+  it "should create zeebras for lions" do
+    lion = Lion.new
+    food = food_barge.food_for(lion)
+    lion.likes?(food).should eq(true)
+  end
 end
