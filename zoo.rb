@@ -89,6 +89,8 @@ class Wildebeests < Food; end
 class Zeebras < Food; end
 class Bamboo < Food; end
 class Bacon < Food; end
+class Grasshoppers < Food; end
+class Salad < Food; end
 
 class Zookeeper
 	def feed(args={})

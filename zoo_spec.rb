@@ -2,9 +2,6 @@
 require "./zoo"
 require "rspec"
 
-class Grasshoppers < Food; end
-class Salad < Food; end
-
 describe Tacos do
 	it "should know all tacos are equal" do
 		(Tacos.new == Tacos.new).should be_true
