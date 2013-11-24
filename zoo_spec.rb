@@ -80,3 +80,15 @@ describe Zookeeper do
 		Zookeeper.new.feed(food: :zeebras, to: lion)
 	end
 end
+
+describe Human do
+        it "should like Bacon" do
+                Human.new.likes?(Bacon.new).should eq(true)
+        end
+        it "should like Tacos" do
+                Human.new.likes?(Tacos.new).should eq(true)
+        end
+        it "should not like bamboo" do
+                Human.new.likes?(Bamboo.new).should eq(false)
+        end
+end
