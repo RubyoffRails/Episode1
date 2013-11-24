@@ -52,7 +52,6 @@ class Lion
 	end
 end
 
-
 class Food
 
 	def ==(other)
@@ -69,9 +68,9 @@ class Bacon < Food; end
 
 class Zookeeper
 	def feed(args={})
+		animal = args.fetch(:to)
 		food = args.fetch(:food)
-		panda = args.fetch(:to)
-		panda.eat(food)
+		animal.eat(food)
 	end
 
 end
@@ -81,5 +80,11 @@ class Human
 
         def acceptable_food
                 [Bacon.new, Tacos.new]
+        end
+end
+
+class FoodBarge
+        def food_for(animal)
+                animal.acceptable_food
         end
 end

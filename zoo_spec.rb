@@ -92,3 +92,14 @@ describe Human do
                 Human.new.likes?(Bamboo.new).should eq(false)
         end
 end
+
+describe FoodBarge do
+        before(:each) do
+                @barge = FoodBarge.new
+        end
+        it "should bring food to pandas" do
+                panda = Panda.new
+                panda_food = panda.acceptable_food
+                @barge.food_for(panda).should eq(panda_food)
+        end
+end
