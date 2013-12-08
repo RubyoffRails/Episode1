@@ -62,6 +62,7 @@ class Food
 end
 
 class Tacos < Food; end
+class Bacon < Food; end
 class Wildebeests < Food; end
 class Zeebras < Food; end
 class Bamboo < Food; end
@@ -69,9 +70,30 @@ class Bamboo < Food; end
 class Zookeeper
 	def feed(args={})
 		food = args.fetch(:food)
-		panda = args.fetch(:to)
-		panda.eat(food)
+		animal = args.fetch(:to)
+		animal.eat(food)
 	end
 
+	def receive(foodBarge)
+		feed(foodBarge)
+	end
+
+end
+
+class Human
+	include Animal
+
+	def acceptable_food
+		[Bacon.new, Tacos.new]
+	end
+end
+
+class FoodBarge 
+	def food_for(args={})
+		food = args.fetch(:food)
+		zookeeper = args.fetch(:to)
+		animal = args.fetch(:animal)
+		zookeeper.receive(food: food, to: animal)
+	end
 end
 
