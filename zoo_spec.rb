@@ -81,6 +81,33 @@ describe Zookeeper do
 		lion.should_receive(:eat).with(:zeebras)
 		Zookeeper.new.feed(food: :zeebras, to: lion)
 	end
+
+	it "should feed the panda the bamboo when foodbarge is received" do
+		foodbarge = FoodBarge.new
+		zookeeper = Zookeeper.new
+		panda = Panda.new
+		bamboo = Bamboo.new
+		foodbarge.food_for(food: bamboo, to: zookeeper, animal: panda)
+		expect(panda.eat(bamboo)).to eq(true)
+	end
+
+	it "should feed the lion the zeebras when foodbarge is received" do
+		foodbarge = FoodBarge.new
+		zookeeper = Zookeeper.new
+		lion = Lion.new
+		zeebras = Zeebras.new
+		foodbarge.food_for(food: zeebras, to: zookeeper, animal: lion)
+		expect(lion.eat(zeebras)).to eq(true)
+	end
+
+	it "should not feed the lion the bamboo when foodbarge is received" do
+		foodbarge = FoodBarge.new
+		zookeeper = Zookeeper.new
+		lion = Lion.new
+		bamboo = Bamboo.new
+		foodbarge.food_for(food: bamboo, to: zookeeper, animal: lion)
+		expect(lion.eat(bamboo)).to eq(false)
+	end
 end
 
 describe Human do
@@ -94,6 +121,24 @@ describe Human do
 
 	it "should not like bamboo" do
 		expect(Human.new.likes?(Bamboo.new)).to eq(false)
+	end
+end
+
+describe FoodBarge do
+	it "should be sent to zookeeper with bamboo for a panda" do
+		zookeeper = Zookeeper.new
+		bamboo = Bamboo.new
+		panda = Panda.new
+		expect(zookeeper).to receive(:receive).with(food: bamboo, to: panda)
+		expect(FoodBarge.new.food_for(food: bamboo, to: zookeeper, animal: panda))
+	end
+
+	it "should be sent to zookeeper with zeebras for a lion" do
+		zookeeper = Zookeeper.new
+		zeebras = Zeebras.new
+		lion = Lion.new
+		expect(zookeeper).to receive(:receive).with(food: zeebras, to: lion)
+		expect(FoodBarge.new.food_for(food: zeebras, to: zookeeper, animal: lion))
 	end
 end
 

@@ -7,6 +7,7 @@ module Animal
 		if likes?(food)
 			@meals += 1
 			true
+
 		else
 			false
 		end
@@ -70,8 +71,12 @@ class Bamboo < Food; end
 class Zookeeper
 	def feed(args={})
 		food = args.fetch(:food)
-		panda = args.fetch(:to)
-		panda.eat(food)
+		animal = args.fetch(:to)
+		animal.eat(food)
+	end
+
+	def receive(foodBarge)
+		feed(foodBarge)
 	end
 
 end
@@ -82,6 +87,13 @@ class Human
 	def acceptable_food
 		[Bacon.new, Tacos.new]
 	end
-
 end
 
+class FoodBarge 
+	def food_for(args={})
+		food = args.fetch(:food)
+		zookeeper = args.fetch(:to)
+		animal = args.fetch(:animal)
+		zookeeper.receive(food: food, to: animal)
+	end
+end
