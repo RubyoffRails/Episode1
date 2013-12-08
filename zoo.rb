@@ -7,7 +7,6 @@ module Animal
 		if likes?(food)
 			@meals += 1
 			true
-
 		else
 			false
 		end
@@ -97,3 +96,4 @@ class FoodBarge
 		zookeeper.receive(food: food, to: animal)
 	end
 end
+

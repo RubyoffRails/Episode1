@@ -1,5 +1,4 @@
 # Zoo spec file
-
 require "./zoo"
 require "rspec"
 require '../../spec_helper'
