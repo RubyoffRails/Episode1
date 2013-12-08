@@ -5,6 +5,7 @@ require "rspec"
 class Grasshoppers < Food; end
 class Salad < Food; end
 
+
 describe Tacos do
 	it "should know all tacos are equal" do
 		(Tacos.new == Tacos.new).should be_true
@@ -80,3 +81,27 @@ describe Zookeeper do
 		Zookeeper.new.feed(food: :zeebras, to: lion)
 	end
 end
+
+describe Human do 
+	it "should like bacon" do
+		Human.new.likes?(Bacon.new).should eq(true)
+	end
+
+	it "should like tacos" do
+		Human.new.likes?(Tacos.new).should eq(true)
+	end
+
+	it "should not like bamboo" do
+		Human.new.likes?(Bamboo.new).should eq(false)
+	end
+end
+
+describe FoodBarge do
+	it "should have the zookeeper get the panda food and the panda should eat it" do
+		panda = Panda.new
+		Zookeeper.new.feed(food: :foodbarge, to: panda)
+		panda.should_receive(:eat).with(:foodbarge)
+	end
+end
+
+

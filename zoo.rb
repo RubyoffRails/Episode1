@@ -61,6 +61,7 @@ class Food
 
 end
 
+class Bacon < Food; end
 class Tacos < Food; end
 class Wildebeests < Food; end
 class Zeebras < Food; end
@@ -74,4 +75,23 @@ class Zookeeper
 	end
 
 end
+
+class Human 
+	include Animal
+
+	def acceptable_food
+		[Bacon.new, Tacos.new]
+	end
+end
+
+class FoodBarge
+	include Food
+
+	def acceptable_food
+		food = foodbarge.food_for(panda)
+		panda.feed(food)
+	end
+end
+
+
 
