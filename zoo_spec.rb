@@ -99,8 +99,10 @@ end
 describe FoodBarge do
 	it "should have the zookeeper get the panda food and the panda should eat it" do
 		panda = Panda.new
+		foodbarge = FoodBarge.new
 		Zookeeper.new.feed(food: :foodbarge, to: panda)
-		panda.should_receive(:eat).with(:foodbarge)
+		foodbarge.visit
+		panda.should be_full
 	end
 end
 

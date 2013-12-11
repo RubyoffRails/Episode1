@@ -24,6 +24,10 @@ module Animal
 		false
 	end
 
+	def visit
+		stub
+	end
+
 end
 
 
@@ -35,7 +39,7 @@ class Panda
 	end
 
 	def full?
-		@meals > 30
+		@meals > 30 
 	end
 
 end
@@ -85,7 +89,6 @@ class Human
 end
 
 class FoodBarge
-	include Food
 
 	def acceptable_food
 		food = foodbarge.food_for(panda)
