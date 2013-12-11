@@ -25,7 +25,7 @@ module Animal
 	end
 
 	def visit
-		stub
+		#insert code
 	end
 
 end
