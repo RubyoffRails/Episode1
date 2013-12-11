@@ -24,6 +24,10 @@ module Animal
 		false
 	end
 
+	def visit
+		#insert code
+	end
+
 end
 
 
@@ -35,7 +39,7 @@ class Panda
 	end
 
 	def full?
-		@meals > 30
+		@meals > 30 
 	end
 
 end
@@ -61,6 +65,7 @@ class Food
 
 end
 
+class Bacon < Food; end
 class Tacos < Food; end
 class Wildebeests < Food; end
 class Zeebras < Food; end
@@ -74,4 +79,22 @@ class Zookeeper
 	end
 
 end
+
+class Human 
+	include Animal
+
+	def acceptable_food
+		[Bacon.new, Tacos.new]
+	end
+end
+
+class FoodBarge
+
+	def acceptable_food
+		food = foodbarge.food_for(panda)
+		panda.feed(food)
+	end
+end
+
+
 
