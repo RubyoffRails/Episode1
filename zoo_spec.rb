@@ -28,14 +28,14 @@ describe Panda do
 	it "should be full after eating 30 bamboo" do
 		panda = Panda.new
 		31.times do
-			panda.eat(Bamboo.new)	
+			panda.eat(Bamboo.new)
 		end
 		panda.should be_full
 	end
 
 	it "should not be full after 1" do
 		panda = Panda.new
-		panda.eat(Bamboo.new)	
+		panda.eat(Bamboo.new)
 		panda.should_not be_full
 	end
 end
@@ -64,6 +64,18 @@ describe Lion do
 			lion.eat(Zeebras.new)
 		end
 		lion.should be_full
+	end
+end
+
+describe Human do
+	it "should like bacon" do
+		Human.new.likes?(Bacon.new).should eq(true)
+	end
+	it "should like tacos" do
+		Human.new.likes?(Tacos.new).should eq(true)
+	end
+	it "should not like bamboo" do
+		Human.new.likes?(Bamboo.new).should eq(false)
 	end
 end
 

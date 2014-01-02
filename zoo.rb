@@ -26,6 +26,14 @@ module Animal
 
 end
 
+class Human
+	include Animal
+
+	def acceptable_food
+		[Bacon.new, Tacos.new]
+	end
+end
+
 
 class Panda
 	include Animal
@@ -65,6 +73,7 @@ class Tacos < Food; end
 class Wildebeests < Food; end
 class Zeebras < Food; end
 class Bamboo < Food; end
+class Bacon < Food; end
 
 class Zookeeper
 	def feed(args={})
