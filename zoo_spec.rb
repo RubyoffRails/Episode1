@@ -28,15 +28,22 @@ describe Panda do
 	it "should be full after eating 30 bamboo" do
 		panda = Panda.new
 		31.times do
-			panda.eat(Bamboo.new)	
+			panda.eat(Bamboo.new)
 		end
 		panda.should be_full
 	end
 
 	it "should not be full after 1" do
 		panda = Panda.new
-		panda.eat(Bamboo.new)	
+		panda.eat(Bamboo.new)
 		panda.should_not be_full
+	end
+
+	it "should be able to eat panda food from the foodbarge" do
+		foodbarge = Foodbarge.new
+		panda = Panda.new
+		food = foodbarge.food_for(panda)
+		panda.feed(food).should eq(true)
 	end
 end
 
@@ -67,6 +74,18 @@ describe Lion do
 	end
 end
 
+describe Human do
+	it "should like bacon" do
+		Human.new.likes?(Bacon.new).should eq(true)
+	end
+	it "should like tacos" do
+		Human.new.likes?(Tacos.new).should eq(true)
+	end
+	it "should not like bamboo" do
+		Human.new.likes?(Bamboo.new).should eq(false)
+	end
+end
+
 describe Zookeeper do
 	it "should be able to feed bamboo to the pandas" do
 		panda = Panda.new
@@ -78,5 +97,21 @@ describe Zookeeper do
 		lion = Lion.new
 		lion.should_receive(:eat).with(:zeebras)
 		Zookeeper.new.feed(food: :zeebras, to: lion)
+	end
+
+	it "should stop feeding panda when panda is full" do
+		panda = Panda.new
+		keeper = Zookeeper.new
+		31.times { keeper.feed(food: Bamboo.new, to: panda) }
+		panda.should_not_receive(:eat)
+		keeper.feed(food: Bamboo.new, to: panda)
+	end
+end
+
+describe Foodbarge do
+	it "should be able to get food for panda" do
+		foodbarge = Foodbarge.new
+		panda = Panda.new
+		foodbarge.food_for(panda).should eq([Bamboo.new])
 	end
 end

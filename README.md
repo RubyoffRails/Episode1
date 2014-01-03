@@ -12,7 +12,7 @@ Panda Level
 Tiger Level
 ---------------
 1. Create a FoodBarge that can be called like:
-2. Test that when the zookeepers gets food for the panda, 
+2. Test that when the zookeepers gets food for the panda,
 the panda will eat it
 
 ```
