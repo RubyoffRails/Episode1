@@ -38,6 +38,13 @@ describe Panda do
 		panda.eat(Bamboo.new)
 		panda.should_not be_full
 	end
+
+	it "should be able to eat panda food from the foodbarge" do
+		foodbarge = Foodbarge.new
+		panda = Panda.new
+		food = foodbarge.food_for(panda)
+		panda.feed(food).should eq(true)
+	end
 end
 
 describe Lion do
@@ -90,5 +97,21 @@ describe Zookeeper do
 		lion = Lion.new
 		lion.should_receive(:eat).with(:zeebras)
 		Zookeeper.new.feed(food: :zeebras, to: lion)
+	end
+
+	it "should stop feeding panda when panda is full" do
+		panda = Panda.new
+		keeper = Zookeeper.new
+		31.times { keeper.feed(food: Bamboo.new, to: panda) }
+		panda.should_not_receive(:eat)
+		keeper.feed(food: Bamboo.new, to: panda)
+	end
+end
+
+describe Foodbarge do
+	it "should be able to get food for panda" do
+		foodbarge = Foodbarge.new
+		panda = Panda.new
+		foodbarge.food_for(panda).should eq([Bamboo.new])
 	end
 end
