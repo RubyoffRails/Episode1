@@ -38,6 +38,10 @@ class Panda
 		@meals > 30
 	end
 
+	def feed(food)
+		true
+	end
+
 end
 
 class Lion
@@ -65,6 +69,7 @@ class Tacos < Food; end
 class Wildebeests < Food; end
 class Zeebras < Food; end
 class Bamboo < Food; end
+class Bacon < Food; end
 
 class Zookeeper
 	def feed(args={})
@@ -75,3 +80,17 @@ class Zookeeper
 
 end
 
+class Human
+	include Animal
+
+	def acceptable_food
+		[Bacon.new, Tacos.new]
+	end
+end
+
+class FoodBarge
+	def food_for(panda)
+		true
+	end
+
+end
