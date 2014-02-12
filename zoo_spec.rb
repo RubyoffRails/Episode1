@@ -101,8 +101,8 @@ describe FoodBarge do
 	it "should have the panda eat the food" do
 		foodbarge = FoodBarge.new
 		panda = Panda.new
-		food = foodbarge.food_for(panda)
-		panda.feed(food)
+		food = foodbarge.food_for(panda).should eq(true)
+		panda.feed(food).should eq(true)
 	end
 
 end

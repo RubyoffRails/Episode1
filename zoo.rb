@@ -39,6 +39,7 @@ class Panda
 	end
 
 	def feed(food)
+		true
 	end
 
 end
@@ -89,6 +90,7 @@ end
 
 class FoodBarge
 	def food_for(panda)
+		true
 	end
 
 end
