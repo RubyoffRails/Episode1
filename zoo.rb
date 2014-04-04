@@ -65,7 +65,7 @@ class Tacos < Food; end
 class Wildebeests < Food; end
 class Zeebras < Food; end
 class Bamboo < Food; end
-
+class Bacon < Food; end
 class Zookeeper
 	def feed(args={})
 		food = args.fetch(:food)
@@ -73,5 +73,18 @@ class Zookeeper
 		panda.eat(food)
 	end
 
+end
+##
+# Added Human Class
+class Human
+  include Animal
+  def acceptable_food
+		[Bacon.new, Tacos.new]
+	end
+
+	def full?
+		@meals > 3
+	end
+  
 end
 
